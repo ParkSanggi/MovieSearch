@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+
+<style>
+
+#container {
+    height : 100px;
+    display:flex;
+    flex-direction: column;
+    justify-content : center;
+    align-items: flex-end;
+}
+
+.item {
+
+width : 50%;
+margin:0 auto;
+
+}
+
+body {
+
+ background-image: url(static/images/Iron-Man-32.jpg);
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-attachment: fixed;
+ background-position: center;
+}
+
+</style>
+
+</head>
+<body>
+{% load static %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <div style="height:600px;">
+
+    </div>
+  <div id="container">
+      <div class="item">
+        <form action="{% url 'movie:search_list' %}" method="GET">
+            {% csrf_token %}
+            <input class="form-control-lg" name="search_key" type="text" style="width:100%; height:80px; font-size:180%;" placeholder="검색어를 입력한 후 Enter Key를 눌러주세요." >
+        </form>
+      </div>
+  </div>
+
+</body>
+</html>

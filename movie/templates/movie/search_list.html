@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="alert alert-info">{{ message }}</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>조회수</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    {% if not message %}
+        {% for object in object_list %}
+        <tr>
+            <td>{{object.id}}</td>
+            <td><a href="{% url 'movie:detail' object.id %}">{{object.subject}}</a></td>
+
+        </tr>
+        {% endfor %}
+
+    {% else %}
+        {% for object in object_list %}
+            <tr>
+                <td>{{object.id}}</td>
+                <td><a href="{% url 'movie:detail' object.movie.id %}">{{object.movie.subject}}</a></td>
+            </tr>
+        {% endfor %}
+    {% endif %}
+</table>
+
+<form action="" method="get" id="search_form" class="">
+    {%csrf_token%}
+
+    <div class="form-row align-items-center justify-content-center">
+        <div class="col-sm-3 my-1">
+            <input type="text" class="form-control" placeholder="Search Keyword" name="search_key">
+        </div>
+
+        <div class="col-auto my-1">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+</form>
+{% endblock %}

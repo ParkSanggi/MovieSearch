@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% block title %}
+    {% endblock %}
+
+{% block style %}
+    {% endblock %}
+</head>
+<body>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- 부트스트랩 -->
+{% load static %}
+
+
+{% block content %}
+{% endblock %}
+
+<script type="text/javascript">
+csrf_token = "{{csrf_token}}"
+
+$(function() {
+
+    $('.btn-like').mouseenter(function(e){
+        var grade = $(this).attr('grade')
+        var likes = $('.btn-like')
+
+        for (i=0; i < likes.length; i++) {
+            $(likes[i]).removeClass('active');
+        };
+
+        for (j=0; j < parseInt(grade, 10); j++) {
+            $(likes[j]).addClass('active');
+        };
+
+    });
+
+<!--    $('.eval1').mouseenter(function(e){-->
+<!--        $('.btn-like').removeClass('active');-->
+<!--        $('.eval1').addClass('active');-->
+
+<!--    });-->
+
+<!--    $('.eval2').mouseenter(function(e){-->
+<!--        $('.btn-like').removeClass('active');-->
+<!--        $('.eval1, .eval2').addClass('active');-->
+<!--    });-->
+
+<!--    $('.eval3').mouseenter(function(e){-->
+<!--        $('.btn-like').removeClass('active');-->
+<!--        $('.eval1, .eval2, .eval3').addClass('active');-->
+<!--    });-->
+
+<!--    $('.eval4').mouseenter(function(e){-->
+<!--        $('.btn-like').removeClass('active');-->
+<!--        $('.eval1, .eval2, .eval3, .eval4').addClass('active');-->
+<!--    });-->
+
+<!--    $('.eval5').mouseenter(function(e){-->
+<!--        $('.btn-like').addClass('active');-->
+<!--    });-->
+
+<!--    $('.btn-like-div').mouseleave(function(e){-->
+<!--        $('.btn-like').removeClass('active');-->
+<!--    });-->
+});
+</script>
+
+</body>
+</html>

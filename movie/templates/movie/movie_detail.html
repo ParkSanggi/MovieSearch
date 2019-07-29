@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block style %}
+{% load static %}
+<style type="text/css">
+
+#container {
+     width:900px;
+     position:relative;
+     left:25%;
+
+}
+
+#poster_div {
+
+    float: left;
+    padding: 50px;
+    width : 300px;
+
+}
+
+#movie_div {
+
+    float: left;
+    magin:50px;
+    padding-left: 150px;
+    padding-top: 95px;
+    width : 400px;
+
+}
+
+#comment_div {
+    float:left;
+    width:800px;
+
+}
+
+p {
+    font-size : 150%;
+    width : 400px;
+}
+
+.btn-like {
+    display:inline-block;
+    width:24px;
+    height:24px;
+    background:url({% static 'images/button_image.png' %});
+    background-position:-231px -131px;
+}
+
+.btn-like.active {
+    background-position:-231px -105px;
+    }
+
+</style>
+{% endblock%}
+
+
+{% block content %}
+<br><br><br>
+<div id="container">
+    <div id="poster_div">
+        <img src="{{ object.poster }}"\
+             style="width:300px; height:450px; padding:10px;">
+    </div>
+
+    <div id="movie_div">
+        <p>영화명 : {{ object.subject }}</p>
+
+        <p>감독 : {{ object.director }}</p>
+
+        <p>장르 : {{ object.category }}</p>
+
+        <p>줄거리 : {{ object.description }}</p>
+
+        <p>평점 : {{ average }}</p>
+
+        <br><br>
+
+        <div class="btn-like-div" style="width:155px;">
+            <span style="font-size:150%;">
+                <a href="{% url 'movie:detail' object.id %}?eval=1" class="btn-like eval1" grade="1"></a>
+                <a href="{% url 'movie:detail' object.id %}?eval=2" class="btn-like eval2" grade="2"></a>
+                <a href="{% url 'movie:detail' object.id %}?eval=3" class="btn-like eval3" grade="3"></a>
+                <a href="{% url 'movie:detail' object.id %}?eval=4" class="btn-like eval4" grade="4"></a>
+                <a href="{% url 'movie:detail' object.id %}?eval=5" class="btn-like eval5" grade="5"></a>
+            </span>
+        </div>
+    </div>
+
+    <div id="comment_div">
+        {{ comments_form }}<br><br>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th colspan="7" class="align-left">감상평</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for comment in comments %}
+
+                <tr>
+                    <td>{{comment.content}}</td>
+                    <td>{{comment.author.username}}</td>
+                    <td>{{comment.created}}</td>
+                    <td><a href="" class="btn btn-warning btn-sm ">update</a></td>
+                    <td><a href="" class="btn btn-danger btn-sm ">delete</a></td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+<!--$(function() {-->
+<!--   $('.btn-like').click(function(e) {-->
+<!--        e.preventDefault();-->
+<!--        url = $(this).attr('href');-->
+
+<!--        $.ajax({-->
+<!--            url:url,-->
+
+<!--        }).done(function(data) {-->
+<!--                comment.text(text);-->
+<!--        });-->
+<!--    });-->
+<!--});-->
+</script>
+{% endblock %}
